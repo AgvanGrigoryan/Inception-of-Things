@@ -1,0 +1,3 @@
+.vagrant/
+*.log
+k3s_node_token
