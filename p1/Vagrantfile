@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.boot_timeout = 600
+  config.vm.define "aggrigorS" do |control|
+    control.vm.hostname = "aggrigorS"
+    control.vm.network "private_network", ip: "192.168.56.110"
+    control.vm.provider "virtualbox" do |v|
+      v.name = "aggrigorS"
+      v.cpus = 2
+      v.memory = 2024
+    end
+    control.vm.provision "shell", path: "scripts/server_provision.sh"
+  end
+
+  config.vm.define "aggrigorSW" do |control|
+    control.vm.hostname = "aggrigorSW"
+    control.vm.network "private_network", ip: "192.168.56.111"
+    control.vm.provider "virtualbox" do |v|
+      v.name = "aggrigorSW"
+      v.cpus = 1
+      v.memory = 1024
+    end
+    control.vm.provision "shell", path: "scripts/worker_provision.sh"
+  end
+end
