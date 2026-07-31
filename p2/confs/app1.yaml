@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchlabels:
+    matchLabels:
       app: app1
   template:
     metadata:
@@ -13,5 +13,23 @@ spec:
         app: app1
     spec:
       containers:
-      - name: app1
-        image:
+        - name: app1
+          image: hashicorp/http-echo
+          args:
+            - "-text=Hello from app1"
+            - "-listen=:5678"
+          ports:
+            - containerPort: 5678
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service
+spec:
+  selector:
+    app: app1
+  ports:
+    - port: 80
+      targetPort: 5678
