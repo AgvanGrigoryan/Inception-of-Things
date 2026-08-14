@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/AgvanGrigoryan/Inception-of-Things
+    repoURL: https://github.com/AgvanGrigoryan/aggrigor-iot-app
     targetRevision: HEAD
-    path: p3/manifests
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
